@@ -1,0 +1,74 @@
+{{template "base" .}} {{define "title"}} Навыки {{end}}{{define "style"}}
+<link rel="stylesheet" href="/static/css/contact.css"> {{end}} {{define "header"}}
+<header>
+    <div class="logo">
+        <img src="/static/img/logo.png" alt="">
+    </div>
+    <nav>
+        <a href="/" class="wow bounceInDown">
+            <div class="wrapp-links o1">
+                <img width="30px" src="https://img.icons8.com/material-rounded/48/000000/home.png">
+                <p>Home</p>
+            </div>
+        </a>
+
+        <a href="/aboutme" class="wow bounceInDown">
+            <div class="wrapp-links o2">
+                <img width="30px" src="https://img.icons8.com/material-rounded/48/000000/high-importance.png">
+                <p>Анкета</p>
+            </div>
+        </a>
+        <a href="/myskils" class="wow bounceInDown ">
+            <div class="wrapp-links o3">
+                <img width="30px" src="https://img.icons8.com/android/144/000000/settings.png">
+                <p>Нывыки</p>
+            </div>
+        </a>
+        <a href="#" class="wow bounceInDown fast">
+            <div class="wrapp-links o4">
+                <img width="30px" src="https://img.icons8.com/ios-glyphs/90/000000/visible.png">
+                <p>Блог</p>
+            </div>
+        </a>
+        <a href="#" class="wow bounceInDown fast">
+            <div class="wrapp-fixed">
+                <!-- <img width="30px" src="https://img.icons8.com/ios-filled/100/000000/send-mass-email.png"> -->
+                <p class="fixed">Контакты</p>
+            </div>
+        </a>
+    </nav>
+    <div class="contact wow bounceInDown fast">
+        <a class="vk">
+            <img src="/static/img/icons8-вконтакте-50.png" width="30px">
+        </a>
+        <a class="facebook wow bounceInDown">
+            <img src="/static/img/icons8-facebook-100.png" width="30px">
+        </a>
+        <a class="twiter wow bounceInDown">
+            <img src="/static/img/icons8-twitter-в-квадрате-50.png" width="30px">
+        </a>
+        <a class="instagram wow bounceInDown">
+            <img src="/static/img/instagram-new.png" width="30px">
+        </a>
+    </div>
+
+</header>
+{{end}} {{define "main"}}
+<div class="wrap-contact">
+    <div class="contactme wow zoomIn">
+        <h1 class="">Свяжитесь со мной</h1>
+        <p>Мне интересна подработка на фрилансе в виде небольших проектов. Но если у вас будут какие-то другие вопросы или предложения, то не стесняйтесь воспользоваться этой формой для связи со мной.
+        </p>
+        <form action="/contact/sendmessege" method="POST">
+            <input type="text" class="inp-n" name="name" placeholder="Name">
+            <input type="email" class="inp-e" name="email" placeholder="Email">
+            <input type="text" class="inp-s" name="subject" placeholder="Subject">
+            <textarea class="mess" name="messegeText" placeholder="Messege"></textarea>
+            <input type="submit" class="button-3" value="Отправить">
+        </form>
+    </div>
+    <div class="map">
+
+    </div>
+</div>
+{{end}}

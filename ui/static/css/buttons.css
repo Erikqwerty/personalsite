@@ -1,0 +1,158 @@
+.wrap {
+    height: 100%;
+    display: flex;
+}
+
+.button-1 {
+    text-decoration: none;
+    width: 30%;
+    height: 6vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    margin-top: 3vh;
+}
+
+.button-1 {
+    min-width: 18vw;
+    min-height: 10%;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 600;
+    color: #000000;
+    background: linear-gradient(90deg, rgb(1, 255, 225) 0%, rgba(79, 209, 197, 1) 100%);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 1px 1px 15px rgba(79, 209, 197, .64);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+}
+
+.button-1::before {
+    content: '';
+    border-radius: 1000px;
+    min-width: calc(18vw + 3vw);
+    min-height: 12vh;
+    border: 4px solid #00FFCB;
+    box-shadow: 3px 3px 15px rgba(0, 255, 203, .64);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease-in-out 0s;
+}
+
+.button-1:hover,
+.button-1:focus {
+    color: #00FFCB;
+    transform: translateY(-0px);
+    background: none;
+}
+
+.button-1:hover::before,
+.button-1:focus::before {
+    opacity: 1;
+}
+
+.button-1::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 2px solid #00FFCB;
+    box-shadow: 0px 0px 0px rgba(0, 255, 203, .64);
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+    pointer-events: none;
+}
+
+.button-1:hover::after,
+.button-1:focus::after {
+    animation: none;
+    display: none;
+}
+
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.button-2 {
+    min-width: 100px;
+    min-height: 40px;
+    font-size: 10pt;
+    color: rgb(0, 230, 210);
+    letter-spacing: 1px;
+    font-weight: 400;
+    background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(4, 29, 26) 100%);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 1px 1px 1px rgba(79, 209, 197, .64);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 4.5px;
+    margin-left: 20px;
+    animation: 1s;
+}
+
+.button-2:hover {
+    color: #00FFCB;
+    box-shadow: 1px 1px 5px rgba(79, 209, 197, .64);
+}
+
+.left {
+    float: right;
+}
+
+.button-3 {
+    width: 100%;
+    grid-column: 2/3;
+    border-radius: 20px;
+    height: 4vh;
+    padding: 0;
+    border: 1px solid#08fdd8 !important;
+    color: #08fdd8 !important;
+}
+
+.button-3:hover {
+    transition: 0.4s;
+    background: none !important;
+    color: white;
+    box-shadow: inset 3px 3px 15px rgba(0, 0, 0, 0.5), 1px 1px 15px #08fdd8;
+}
+
+@media (min-width: 421px) and (max-width:800px) {
+    .button-1 {
+        min-width: 200px;
+        min-height: 10px;
+    }
+    .button-1::before {
+        min-width: calc(200px + 30px);
+    }
+    .button-2 {
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        font-size: 7.5pt;
+        margin-left: 2px;
+    }
+}

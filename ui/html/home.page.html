@@ -1,0 +1,78 @@
+{{template "base" .}} {{define "title"}} Домашняя страница {{end}} {{define "style"}}
+<link rel="stylesheet" href="/static/css/home.css"> {{end}} {{define "header"}}
+<header>
+    <div class="logo">
+        <img src="/static/img/logo.png" alt="">
+    </div>
+    <nav>
+        <a href="/" class="wow bounceInDown">
+            <div class="wrapp-fixed">
+                <!-- <img width="30px" src="https://img.icons8.com/material-rounded/48/000000/home.png"> -->
+                <p class="fixed">Home</p>
+            </div>
+        </a>
+
+        <a href="/aboutme" class="wow bounceInDown">
+            <div class="wrapp-links o1">
+                <img width="30px" src="https://img.icons8.com/material-rounded/48/000000/high-importance.png">
+                <p>Анкета</p>
+            </div>
+        </a>
+        <a href="/myskils" class="wow bounceInDown ">
+            <div class="wrapp-links o2">
+                <img width="30px" src="https://img.icons8.com/android/144/000000/settings.png">
+                <p>Нывыки</p>
+            </div>
+        </a>
+        <a href="#" class="wow bounceInDown fast">
+            <div class="wrapp-links o3">
+                <img width="30px" src="https://img.icons8.com/ios-glyphs/90/000000/visible.png">
+                <p>Блог</p>
+            </div>
+        </a>
+        <a href="/contact" class="wow bounceInDown fast">
+            <div class="wrapp-links o4">
+                <img width="30px" src="https://img.icons8.com/ios-filled/100/000000/send-mass-email.png">
+                <p>Контакты</p>
+            </div>
+        </a>
+    </nav>
+    <div class="contact wow bounceInDown fast">
+        <a class="vk">
+            <img src="/static/img/icons8-вконтакте-50.png" width="30px">
+        </a>
+        <a class="facebook wow bounceInDown">
+            <img src="/static/img/icons8-facebook-100.png" width="30px">
+        </a>
+        <a class="twiter wow bounceInDown">
+            <img src="/static/img/icons8-twitter-в-квадрате-50.png" width="30px">
+        </a>
+        <a class="instagram wow bounceInDown">
+            <img src="/static/img/instagram-new.png" width="30px">
+        </a>
+    </div>
+
+</header>
+{{end}} {{define "main"}}
+<div class="infoblok">
+    <p>Сайт написан на Golang</p>
+</div>
+<div class="textBox wow bounceInDown">
+    <h1 class="">Привет, </br> меня зовут Эрик,</br>я IT специалист. </h1>
+    <p class="">Frontend и backend разработчик / специалист по компьютерным сетям / системный администратор.</p>
+    <div class="wrap">
+        <a href="/aboutme" class="button-1">Анкета</a>
+    </div>
+</div>
+
+<div class="box-anime wow bounceInDown">
+    <p class="p--0">&lt;html></p>
+    <p class="p--1">&lt;head></p>
+    <br>
+    <p class="p--1">&lt;/head></p>
+    <p class="p--1">&lt;body></p>
+    <br>
+    <p class="p--1">&lt;/body></p>
+    <p class="p--0">&lt;/html></p>
+</div>
+{{end}}
