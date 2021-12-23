@@ -98,3 +98,7 @@ func (app application) messeg(w http.ResponseWriter, r *http.Request) {
 	}
 	http.Redirect(w, r, "/contact", http.StatusSeeOther)
 }
+
+func (app application) labworks(w http.ResponseWriter, r *http.Request) {
+	// создать шаблоны
+}

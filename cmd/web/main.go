@@ -18,7 +18,7 @@ type application struct {
 
 func main() {
 	addr := flag.String("addr", "127.0.0.1:5000", "IP адрес web приложения.")
-	botKey := flag.String("key", "", "bot API key telegram")
+	botKey := flag.String("key", "5019333256:AAGW9Zb9Wbr5HSsutuynyDhcEGB2cymTkmk", "bot API key telegram")
 	flag.Parse()
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)

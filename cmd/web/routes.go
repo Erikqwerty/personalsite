@@ -23,6 +23,7 @@ func (app application) routes() *http.ServeMux {
 	mux.HandleFunc("/myskils", app.myskils)
 	mux.HandleFunc("/contact", app.contact)
 	mux.HandleFunc("/contact/sendmessege", app.messeg)
+	mux.HandleFunc("/myskils/labworks", app.labworks)
 
 	return mux
 }
