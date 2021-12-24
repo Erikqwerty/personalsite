@@ -1,7 +1,6 @@
 package main
 
 import (
-	"html/template"
 	"net/http"
 
 	"portfolio.site/pkg/models"
@@ -13,77 +12,17 @@ func (app application) home(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 		return
 	}
-
-	files := []string{
-		"./ui/html/home.page.html",
-		"./ui/html/base.layout.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
-	err = ts.Execute(w, nil)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
+	app.render(w, r, "home.page.html")
 }
 
 func (app application) aboutme(w http.ResponseWriter, r *http.Request) {
-
-	files := []string{
-		"./ui/html/aboutme.page.html",
-		"./ui/html/base.layout.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
-	err = ts.Execute(w, nil)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
+	app.render(w, r, "aboutme.page.html")
 }
 func (app application) myskils(w http.ResponseWriter, r *http.Request) {
-
-	files := []string{
-		"./ui/html/myskils.page.html",
-		"./ui/html/base.layout.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
-	err = ts.Execute(w, nil)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
+	app.render(w, r, "myskils.page.html")
 }
 func (app application) contact(w http.ResponseWriter, r *http.Request) {
-
-	files := []string{
-		"./ui/html/contact.page.html",
-		"./ui/html/base.layout.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
-	err = ts.Execute(w, nil)
-	if err != nil {
-		app.errorLog.Println(err.Error())
-		app.serverError(w, err)
-	}
+	app.render(w, r, "contact.page.html")
 }
 
 func (app application) messeg(w http.ResponseWriter, r *http.Request) {

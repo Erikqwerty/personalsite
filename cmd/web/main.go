@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -11,9 +12,10 @@ import (
 
 //Зависимости всего приложения.
 type application struct {
-	errorLog *log.Logger
-	infoLog  *log.Logger
-	tbot     models.TBot
+	errorLog      *log.Logger
+	infoLog       *log.Logger
+	tbot          models.TBot
+	templateCache map[string]*template.Template
 }
 
 func main() {
@@ -23,22 +25,33 @@ func main() {
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
 	tb := models.TBot{
 		BotKey:   *botKey,
 		MessChan: make(chan models.Mess),
 	}
-	app := application{
-		errorLog: errorLog,
-		infoLog:  infoLog,
-		tbot:     tb,
+
+	templateCache, err := newTemplateCache("./ui/html/")
+	if err != nil {
+		errorLog.Fatal(err.Error())
 	}
+
+	app := application{
+		errorLog:      errorLog,
+		infoLog:       infoLog,
+		tbot:          tb,
+		templateCache: templateCache,
+	}
+
 	srv := &http.Server{
 		Addr:     *addr,
 		ErrorLog: errorLog,
 		Handler:  app.routes(),
 	}
+
 	go app.tgbot()
+
 	infoLog.Println("Запуск сервера по адресу:", *addr)
-	err := srv.ListenAndServe()
+	err = srv.ListenAndServe()
 	errorLog.Fatal(err.Error())
 }
