@@ -1,7 +1,6 @@
 package main
 
 import (
-	"html/template"
 	"net/http"
 
 	"portfolio.site/pkg/models"
@@ -13,17 +12,17 @@ func (app application) home(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 		return
 	}
-	app.render(w, r, "home.page.html")
+	app.render(w, r, "home.page.html", nil)
 }
 
 func (app application) aboutme(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "aboutme.page.html")
+	app.render(w, r, "aboutme.page.html", nil)
 }
 func (app application) myskils(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "myskils.page.html")
+	app.render(w, r, "myskils.page.html", nil)
 }
 func (app application) contact(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "contact.page.html")
+	app.render(w, r, "contact.page.html", nil)
 }
 
 func (app application) messeg(w http.ResponseWriter, r *http.Request) {
@@ -51,19 +50,6 @@ func (app application) labworks(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, err)
 	}
 
-	files := []string{
-		"./ui/html/labworks.page.html",
-		"./ui/html/base.layout.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.serverError(w, err)
-		return
-	}
-	err = ts.Execute(w, Labs)
-	if err != nil {
-		app.serverError(w, err)
-	}
+	app.render(w, r, "labworks.page.html", Labs)
 
 }

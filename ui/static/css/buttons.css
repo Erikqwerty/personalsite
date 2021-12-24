@@ -36,7 +36,7 @@
     content: '';
     border-radius: 1000px;
     min-width: calc(16vw + 4vw);
-    min-height: 12vh;
+    min-height: calc(10vh + 2vh);
     border: 4px solid #00FFCB;
     box-shadow: 3px 3px 15px rgba(0, 255, 203, .64);
     position: absolute;

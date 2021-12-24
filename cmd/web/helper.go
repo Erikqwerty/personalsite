@@ -24,13 +24,13 @@ func (app *application) notFound(w http.ResponseWriter) {
 	app.clientError(w, http.StatusNotFound)
 }
 
-func (app application) render(w http.ResponseWriter, r *http.Request, name string) {
+func (app application) render(w http.ResponseWriter, r *http.Request, name string, data interface{}) {
 	ts, ok := app.templateCache[name]
 	if !ok {
 		app.serverError(w, fmt.Errorf("шаблон %s не существует", name))
 		return
 	}
-	err := ts.Execute(w, nil)
+	err := ts.Execute(w, data)
 	if err != nil {
 		app.serverError(w, err)
 	}
