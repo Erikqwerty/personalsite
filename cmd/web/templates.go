@@ -5,6 +5,12 @@ import (
 	"path/filepath"
 )
 
+type ViewDataLabs struct {
+	Cisco   []string
+	Windows []string
+	Linux   []string
+}
+
 func newTemplateCache(dir string) (map[string]*template.Template, error) {
 	cahe := map[string]*template.Template{}
 
@@ -26,4 +32,40 @@ func newTemplateCache(dir string) (map[string]*template.Template, error) {
 		cahe[name] = ts
 	}
 	return cahe, nil
+}
+func pageData(dirs map[string]string) (ViewDataLabs, error) {
+	Labs := ViewDataLabs{
+		Cisco:   []string{},
+		Windows: []string{},
+		Linux:   []string{},
+	}
+	for labSection, dir := range dirs {
+		switch labSection {
+		case "windows":
+			labs, err := filepath.Glob(filepath.Join(dir, "*.pdf"))
+			if err != nil {
+				return Labs, err
+			}
+			for _, lab := range labs {
+				Labs.Windows = append(Labs.Windows, filepath.Base(lab))
+			}
+		case "linux":
+			labs, err := filepath.Glob(filepath.Join(dir, "*.pdf"))
+			if err != nil {
+				return Labs, err
+			}
+			for _, lab := range labs {
+				Labs.Linux = append(Labs.Linux, filepath.Base(lab))
+			}
+		case "cisco":
+			labs, err := filepath.Glob(filepath.Join(dir, "*.pdf"))
+			if err != nil {
+				return Labs, err
+			}
+			for _, lab := range labs {
+				Labs.Cisco = append(Labs.Cisco, filepath.Base(lab))
+			}
+		}
+	}
+	return Labs, nil
 }

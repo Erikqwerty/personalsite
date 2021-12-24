@@ -1,0 +1,41 @@
+{{template "base" .}} {{define "title"}} Лабораторные работы {{end}} {{define "style"}}
+<link rel="stylesheet" href="/static/css/labworks.css"> {{end}} {{define "header"}}
+<header>
+
+</header>
+{{end}} {{define "main"}}
+<div class="lab">
+    <h1>Список лабораторных работ</h1>
+
+    <input type="checkbox" id="hd-1" class="hide" />
+    <label for="hd-1">Лабораторные работы по cisco</label>
+    <div>
+        {{ range .Cisco }}
+        <p>
+            <a target="_blank" href="/static/document/labs/cisco/{{ . }}">{{ . }}</a>
+        </p>
+        {{end}}
+    </div>
+
+    <input type="checkbox" id="hd-2" class="hide" />
+    <label for="hd-2">Лабораторные работы по Windows</label>
+    <div>
+        {{ range .Windows }}
+        <p>
+            <a target="_blank" href="/static/document/labs/windows/{{ . }}">{{ . }}</a>
+        </p>
+        {{end}}
+    </div>
+
+    <input type="checkbox" id="hd-3" class="hide" />
+    <label for="hd-3">Лабораторные работы по Linux</label>
+    <div>
+        {{ range .Linux }}
+        <p>
+            <a target="_blank" href="/static/document/labs/linux/{{ . }}">{{ . }}</a>
+        </p>
+        {{end}}
+    </div>
+
+</div>
+{{end}}

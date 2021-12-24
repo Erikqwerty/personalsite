@@ -1,6 +1,7 @@
 package main
 
 import (
+	"html/template"
 	"net/http"
 
 	"portfolio.site/pkg/models"
@@ -39,5 +40,30 @@ func (app application) messeg(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app application) labworks(w http.ResponseWriter, r *http.Request) {
-	// создать шаблоны
+
+	Labs, err := pageData(map[string]string{
+		"windows": "./ui/static/document/labs/windows",
+		"linux":   "./ui/static/document/labs/linux",
+		"cisco":   "./ui/static/document/labs/cisco",
+	})
+
+	if err != nil {
+		app.serverError(w, err)
+	}
+
+	files := []string{
+		"./ui/html/labworks.page.html",
+		"./ui/html/base.layout.html",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	err = ts.Execute(w, Labs)
+	if err != nil {
+		app.serverError(w, err)
+	}
+
 }
