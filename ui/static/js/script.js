@@ -42,7 +42,7 @@ imgRecolection('.twiter', "../static/img/icons8-twitter-в-квадрате-50.p
 imgRecolection('.instagram', "../static/img/instagram-new.png", "../static/img/instagram-new-in.png")
 
 $('html').on('mousemove', function(e) {
-    var bubble = $('<div class="bubble"></div>');
+    let bubble = $('<div class="bubble"></div>');
     bubble.css({ 'left': e.clientX - 50, 'top': e.clientY - 50 });
     $('body').append(bubble);
     setInterval(function() { bubble.remove() }, 1000)

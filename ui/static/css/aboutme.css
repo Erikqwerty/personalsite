@@ -54,10 +54,6 @@
     border-bottom: 1px solid;
 }
 
-.right {
-    padding-left: 20px;
-}
-
 .aboutme_text_p {
     grid-row: 3/4;
     grid-column: 2/4;
