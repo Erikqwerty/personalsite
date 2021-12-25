@@ -1,0 +1,18 @@
+syntax = "proto3";
+package api;
+option go_package = "./pkg/api"; 
+
+message MessReq {
+    string Name = 1;
+    string Email = 2;
+    string Subject = 3;
+    string MessegeText = 4;
+}
+
+message StatusResp{
+    bool Status = 1;
+}
+
+service tgBot {
+    rpc GetMess(MessReq) returns (StatusResp){}
+}

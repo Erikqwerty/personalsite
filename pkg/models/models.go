@@ -7,9 +7,3 @@ type Mess struct {
 	Subject     string
 	MessegeText string
 }
-
-// структура с зависимостями для бота.
-type TBot struct {
-	BotKey   string
-	MessChan chan Mess
-}

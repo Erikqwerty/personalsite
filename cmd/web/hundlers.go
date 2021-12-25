@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"portfolio.site/pkg/models"
+	"portfolio.site/pkg/api"
 )
 
 func (app application) home(w http.ResponseWriter, r *http.Request) {
@@ -26,14 +26,18 @@ func (app application) contact(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app application) messeg(w http.ResponseWriter, r *http.Request) {
-	mess := models.Mess{
+	mess := api.MessReq{
 		Name:        r.PostFormValue("name"),
 		Email:       r.PostFormValue("email"),
 		Subject:     r.PostFormValue("subject"),
 		MessegeText: r.PostFormValue("messegeText"),
 	}
 	if mess.Email != "" {
-		app.tbot.MessChan <- mess
+		err := app.callServiceTelegramBot(&mess)
+		if err != nil {
+			app.errorLog.Println(err.Error())
+			// нужно написать ридерект на страницу ошибка сервиса. Или как то обработать ошибку.
+		}
 	}
 	http.Redirect(w, r, "/contact", http.StatusSeeOther)
 }
