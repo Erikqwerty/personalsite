@@ -11,6 +11,7 @@ type MessegeWebSite struct {
 	MessegeText string
 }
 
+// Бот отправляет сообщение.
 func (app application) BotSend(mess MessegeWebSite) {
 	bot, err := tgbotapi.NewBotAPI(app.tgApiKey)
 	if err != nil {

@@ -13,6 +13,7 @@ type serviceBot struct {
 	api.UnimplementedTgBotServer
 }
 
+// Реализация интерфейса TgBotServer метод GetMess отправляет полученное сообщение от клиента сервиса.
 func (srv serviceBot) GetMess(ctx context.Context, req *api.MessReq) (*api.StatusResp, error) {
 	key := flag.String("key", "5019333256:AAGW9Zb9Wbr5HSsutuynyDhcEGB2cymTkmk", "api key telegram bot")
 	flag.Parse()

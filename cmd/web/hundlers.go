@@ -25,6 +25,8 @@ func (app application) contact(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, "contact.page.html", nil)
 }
 
+// Обрабатывает форму на странице contact.page.html и посылакт полученное сообщение сервису
+// телеграмм бота.
 func (app application) messeg(w http.ResponseWriter, r *http.Request) {
 	mess := api.MessReq{
 		Name:        r.PostFormValue("name"),

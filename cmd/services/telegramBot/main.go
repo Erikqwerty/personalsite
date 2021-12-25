@@ -15,6 +15,7 @@ type application struct {
 }
 
 func main() {
+	// запуск grcp сервера.
 	s := grpc.NewServer()
 	srv := &serviceBot{}
 	api.RegisterTgBotServer(s, srv)

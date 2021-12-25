@@ -7,6 +7,7 @@ import (
 	"portfolio.site/pkg/api"
 )
 
+// связывается с сервисом телеграм бота посредством grcp API и отправляет сообщение.
 func (app application) callServiceTelegramBot(mess *api.MessReq) error {
 	con, err := grpc.Dial(app.ipAdrrServiceTelegramBot, grpc.WithInsecure())
 	if err != nil {
