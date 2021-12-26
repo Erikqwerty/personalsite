@@ -11,8 +11,8 @@ type MessegeWebSite struct {
 	MessegeText string
 }
 
-// Бот отправляет сообщение.
-func (app application) BotSend(mess MessegeWebSite) {
+// Для отправки сообщения телеграмм пользователю.
+func (app serviceBot) BotSend(mess MessegeWebSite) {
 	bot, err := tgbotapi.NewBotAPI(app.tgApiKey)
 	if err != nil {
 		app.errorLog.Println(err)

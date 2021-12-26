@@ -21,11 +21,18 @@ func readerConfig(dir string) (map[string]string, error) {
 		wr.WriteString(sc.Text())
 	}
 
+	// Удаление пробелова из конфигурационного файла для упращения алгоритма.
 	File := strings.Replace(wr.String(), " ", "", -1)
 
-	config := make(map[string]string)
-
+	// Разделяем перечень параметров в конфигурационном файле через ;
+	// Получаем срез строк в формате параметр=значение
 	slFile := breakString(File, ';')
+
+	// Инициализируем карту в которую будем складывать map[параметр]значение.
+	config := make(map[string]string)
+	// Цикл для переборки среза строк slFile (в формате параметр=значение) и создания
+	// карты. Разделяем параметр и значение на 2 строки записываем в срез для того чтобы
+	// создать карту map[параметр]значение. arg+" " - костыль алгоритм не совершенен.
 	for _, arg := range slFile {
 		slArg := breakString(arg+" ", '=')
 		config[slArg[0]] = slArg[1]
@@ -33,6 +40,9 @@ func readerConfig(dir string) (map[string]string, error) {
 
 	return config, nil
 }
+
+// Функция для создания среза из строки. Разделяет строку (текст|char|текст).
+// Новые элементы среза ([0]текст(|char|[1]текст... и т.д.).
 func breakString(str string, char rune) []string {
 	slice := []string{}
 	for len(str) > 0 {
