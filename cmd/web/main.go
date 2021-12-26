@@ -10,10 +10,10 @@ import (
 
 //Зависимости всего приложения.
 type application struct {
-	errorLog                 *log.Logger
-	infoLog                  *log.Logger
-	templateCache            map[string]*template.Template
-	ipAdrrServiceTelegramBot string
+	errorLog             *log.Logger
+	infoLog              *log.Logger
+	templateCache        map[string]*template.Template
+	ipServiceTelegramBot string
 }
 
 func main() {
@@ -30,10 +30,10 @@ func main() {
 	}
 
 	app := application{
-		errorLog:                 errorLog,
-		infoLog:                  infoLog,
-		templateCache:            templateCache,
-		ipAdrrServiceTelegramBot: *addrServiceBot,
+		errorLog:             errorLog,
+		infoLog:              infoLog,
+		templateCache:        templateCache,
+		ipServiceTelegramBot: *addrServiceBot,
 	}
 
 	srv := &http.Server{

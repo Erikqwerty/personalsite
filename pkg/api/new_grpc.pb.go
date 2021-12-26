@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TgBotClient interface {
-	GetMess(ctx context.Context, in *MessReq, opts ...grpc.CallOption) (*StatusResp, error)
+	SendMess(ctx context.Context, in *MessReq, opts ...grpc.CallOption) (*StatusResp, error)
 }
 
 type tgBotClient struct {
@@ -29,9 +29,9 @@ func NewTgBotClient(cc grpc.ClientConnInterface) TgBotClient {
 	return &tgBotClient{cc}
 }
 
-func (c *tgBotClient) GetMess(ctx context.Context, in *MessReq, opts ...grpc.CallOption) (*StatusResp, error) {
+func (c *tgBotClient) SendMess(ctx context.Context, in *MessReq, opts ...grpc.CallOption) (*StatusResp, error) {
 	out := new(StatusResp)
-	err := c.cc.Invoke(ctx, "/api.tgBot/GetMess", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.tgBot/SendMess", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -42,7 +42,7 @@ func (c *tgBotClient) GetMess(ctx context.Context, in *MessReq, opts ...grpc.Cal
 // All implementations must embed UnimplementedTgBotServer
 // for forward compatibility
 type TgBotServer interface {
-	GetMess(context.Context, *MessReq) (*StatusResp, error)
+	SendMess(context.Context, *MessReq) (*StatusResp, error)
 	mustEmbedUnimplementedTgBotServer()
 }
 
@@ -50,8 +50,8 @@ type TgBotServer interface {
 type UnimplementedTgBotServer struct {
 }
 
-func (UnimplementedTgBotServer) GetMess(context.Context, *MessReq) (*StatusResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMess not implemented")
+func (UnimplementedTgBotServer) SendMess(context.Context, *MessReq) (*StatusResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMess not implemented")
 }
 func (UnimplementedTgBotServer) mustEmbedUnimplementedTgBotServer() {}
 
@@ -66,20 +66,20 @@ func RegisterTgBotServer(s grpc.ServiceRegistrar, srv TgBotServer) {
 	s.RegisterService(&TgBot_ServiceDesc, srv)
 }
 
-func _TgBot_GetMess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TgBot_SendMess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MessReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TgBotServer).GetMess(ctx, in)
+		return srv.(TgBotServer).SendMess(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.tgBot/GetMess",
+		FullMethod: "/api.tgBot/SendMess",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TgBotServer).GetMess(ctx, req.(*MessReq))
+		return srv.(TgBotServer).SendMess(ctx, req.(*MessReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -92,8 +92,94 @@ var TgBot_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TgBotServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetMess",
-			Handler:    _TgBot_GetMess_Handler,
+			MethodName: "SendMess",
+			Handler:    _TgBot_SendMess_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "new.proto",
+}
+
+// SmtpClIClient is the client API for SmtpClI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type SmtpClIClient interface {
+	SendMess(ctx context.Context, in *MessReq, opts ...grpc.CallOption) (*StatusResp, error)
+}
+
+type smtpClIClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSmtpClIClient(cc grpc.ClientConnInterface) SmtpClIClient {
+	return &smtpClIClient{cc}
+}
+
+func (c *smtpClIClient) SendMess(ctx context.Context, in *MessReq, opts ...grpc.CallOption) (*StatusResp, error) {
+	out := new(StatusResp)
+	err := c.cc.Invoke(ctx, "/api.smtpClI/SendMess", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SmtpClIServer is the server API for SmtpClI service.
+// All implementations must embed UnimplementedSmtpClIServer
+// for forward compatibility
+type SmtpClIServer interface {
+	SendMess(context.Context, *MessReq) (*StatusResp, error)
+	mustEmbedUnimplementedSmtpClIServer()
+}
+
+// UnimplementedSmtpClIServer must be embedded to have forward compatible implementations.
+type UnimplementedSmtpClIServer struct {
+}
+
+func (UnimplementedSmtpClIServer) SendMess(context.Context, *MessReq) (*StatusResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendMess not implemented")
+}
+func (UnimplementedSmtpClIServer) mustEmbedUnimplementedSmtpClIServer() {}
+
+// UnsafeSmtpClIServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SmtpClIServer will
+// result in compilation errors.
+type UnsafeSmtpClIServer interface {
+	mustEmbedUnimplementedSmtpClIServer()
+}
+
+func RegisterSmtpClIServer(s grpc.ServiceRegistrar, srv SmtpClIServer) {
+	s.RegisterService(&SmtpClI_ServiceDesc, srv)
+}
+
+func _SmtpClI_SendMess_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MessReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SmtpClIServer).SendMess(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.smtpClI/SendMess",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SmtpClIServer).SendMess(ctx, req.(*MessReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SmtpClI_ServiceDesc is the grpc.ServiceDesc for SmtpClI service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SmtpClI_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "api.smtpClI",
+	HandlerType: (*SmtpClIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SendMess",
+			Handler:    _SmtpClI_SendMess_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

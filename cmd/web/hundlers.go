@@ -35,7 +35,12 @@ func (app application) messeg(w http.ResponseWriter, r *http.Request) {
 		MessegeText: r.PostFormValue("messegeText"),
 	}
 	if mess.Email != "" {
-		err := app.callServiceTelegramBot(&mess)
+		err := app.SendMessegeServiceBot(&mess)
+		if err != nil {
+			app.errorLog.Println(err.Error())
+			// нужно написать ридерект на страницу ошибка сервиса. Или как то обработать ошибку.
+		}
+		err = app.SendMessegeServiceSMTP(&mess)
 		if err != nil {
 			app.errorLog.Println(err.Error())
 			// нужно написать ридерект на страницу ошибка сервиса. Или как то обработать ошибку.

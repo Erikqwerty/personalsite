@@ -14,17 +14,23 @@ type serviceBot struct {
 }
 
 // Реализация интерфейса TgBotServer метод GetMess отправляет полученное сообщение от клиента сервиса.
-func (srv serviceBot) GetMess(ctx context.Context, req *api.MessReq) (*api.StatusResp, error) {
-	key := flag.String("key", "5019333256:AAGW9Zb9Wbr5HSsutuynyDhcEGB2cymTkmk", "api key telegram bot")
+func (srv serviceBot) SendMess(ctx context.Context, req *api.MessReq) (*api.StatusResp, error) {
+
+	path := flag.String("p", "./cmd/services/telegramBot/config/bot.conf", "path config file")
 	flag.Parse()
 
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
+	conf, err := readerConfig(*path)
+	if err != nil {
+		errorLog.Println(err)
+	}
+
 	app := application{
 		errorLog: errorLog,
 		infoLog:  infoLog,
-		tgApiKey: *key,
+		tgApiKey: conf["key"],
 	}
 
 	mess := MessegeWebSite{
