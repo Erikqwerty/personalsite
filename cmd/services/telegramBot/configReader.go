@@ -13,21 +13,14 @@ import (
 // параметр2=значение; и тд.
 // ";" - обязательно.
 func readerConfig(dir string) (map[string]string, error) {
-	f, err := os.Open(dir)
+	// читаем файл в буфер
+	fileText, err := readeFile(dir)
 	if err != nil {
-		return nil, err
-	}
-	defer f.Close()
-
-	// Чтение файла с ридером
-	wr := bytes.Buffer{}
-	sc := bufio.NewScanner(f)
-	for sc.Scan() {
-		wr.WriteString(sc.Text())
+		return nil, nil
 	}
 
 	// Удаление пробелова из конфигурационного файла для упращения алгоритма.
-	File := strings.Replace(wr.String(), " ", "", -1)
+	File := strings.Replace(fileText, " ", "", -1)
 
 	// Разделяем перечень параметров в конфигурационном файле через ;
 	// Получаем срез строк в формате параметр=значение
@@ -44,6 +37,23 @@ func readerConfig(dir string) (map[string]string, error) {
 	}
 
 	return config, nil
+}
+
+// Читает файл возвращает строку файла.
+func readeFile(dir string) (string, error) {
+	f, err := os.Open(dir)
+	if err != nil {
+		return "", err
+	}
+	defer f.Close()
+
+	// Чтение файла с ридером
+	wr := bytes.Buffer{}
+	sc := bufio.NewScanner(f)
+	for sc.Scan() {
+		wr.WriteString(sc.Text())
+	}
+	return wr.String(), nil
 }
 
 // Функция для создания среза из строки. Разделяет строку (текст|char|текст).
