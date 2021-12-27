@@ -35,16 +35,8 @@ func (app application) messeg(w http.ResponseWriter, r *http.Request) {
 		MessegeText: r.PostFormValue("messegeText"),
 	}
 	if mess.Email != "" {
-		err := app.SendMessegeServiceBot(&mess)
-		if err != nil {
-			app.errorLog.Println(err.Error())
-			// нужно написать ридерект на страницу ошибка сервиса. Или как то обработать ошибку.
-		}
-		err = app.SendMessegeServiceSMTP(&mess)
-		if err != nil {
-			app.errorLog.Println(err.Error())
-			// нужно написать ридерект на страницу ошибка сервиса. Или как то обработать ошибку.
-		}
+		go app.SendSMTP(&mess)
+		go app.SendTgBot(&mess)
 	}
 	http.Redirect(w, r, "/contact", http.StatusSeeOther)
 }
@@ -63,4 +55,8 @@ func (app application) labworks(w http.ResponseWriter, r *http.Request) {
 
 	app.render(w, r, "labworks.page.html", Labs)
 
+}
+
+func (app application) blog(w http.ResponseWriter, r *http.Request) {
+	app.render(w, r, "blog.page.html", nil)
 }

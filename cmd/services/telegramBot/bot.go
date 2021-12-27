@@ -13,9 +13,9 @@ type MessegeWebSite struct {
 
 // Для отправки сообщения телеграмм пользователю.
 func (app serviceBot) BotSend(mess MessegeWebSite) {
-	bot, err := tgbotapi.NewBotAPI(app.tgApiKey)
+	bot, err := tgbotapi.NewBotAPI(app.config["key"])
 	if err != nil {
-		app.errorLog.Println(err)
+		app.errorLog.Fatal("Неверный API ключь. Измените конфигурационный файл", err)
 	}
 	app.infoLog.Println("Запущен бот:", bot.Self.UserName)
 

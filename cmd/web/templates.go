@@ -11,6 +11,7 @@ type ViewDataLabs struct {
 	Linux   []string
 }
 
+// кеширование шаблонов.
 func newTemplateCache(dir string) (map[string]*template.Template, error) {
 	cahe := map[string]*template.Template{}
 
@@ -33,6 +34,7 @@ func newTemplateCache(dir string) (map[string]*template.Template, error) {
 	}
 	return cahe, nil
 }
+
 func pageData(dirs map[string]string) (ViewDataLabs, error) {
 	Labs := ViewDataLabs{
 		Cisco:   []string{},

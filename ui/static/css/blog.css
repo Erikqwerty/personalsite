@@ -1,0 +1,121 @@
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+body {
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 8vh 92vh;
+    /* background: linear-gradient(180deg, rgba(1, 26, 27, 0.95), rgba(0, 0, 0, 0.98)), url("../img/fon2.PNG"); */
+}
+
+header {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: repeat(16, 6.25%);
+    grid-template-rows: 100%;
+}
+
+header .logo {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.logo img {
+    height: 100%;
+    width: 80%;
+}
+
+header nav {
+    grid-row: 1/2;
+    grid-column: 6/11;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    padding-left: 0px;
+    font-size: 9.5pt;
+}
+
+nav a {}
+
+main {
+    font-size: 16pt;
+}
+
+.wrapp-links {
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: 1fr;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.wrapp-links img {
+    align-self: center;
+    justify-self: auto;
+    opacity: 1;
+    transition: 0.5s;
+    width: 2vw;
+    padding-left: 0px;
+}
+
+.wrapp-links p {}
+
+.contact {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-column: 15/17;
+    grid-row: 1/2;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 8vh;
+    padding-top: 0vh;
+    justify-self: end;
+}
+
+.contact a {
+    justify-self: center;
+    align-self: center;
+}
+
+.contact a img {
+    width: 2vw;
+    cursor: pointer;
+}
+
+.wrapp-fixed {
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: 1fr;
+    padding: 0;
+    margin: 0;
+}
+
+.fixed {
+    justify-self: center;
+    align-self: center;
+    font-size: 9pt;
+}
+
+@media (min-width: 421px) and (max-width:800px) {
+    body {
+        grid-template-columns: 100%;
+    }
+    header {
+        grid-column: 1/2;
+    }
+    .wrapp-links img {
+        width: 3.5vw;
+    }
+    header nav {
+        grid-template-columns: 6/10;
+    }
+    .contact a img {
+        width: 3vw;
+    }
+    .contact {
+        grid-column: 15/16;
+    }
+}

@@ -15,7 +15,7 @@ type serviceBot struct {
 	api.UnimplementedTgBotServer
 	errorLog *log.Logger
 	infoLog  *log.Logger
-	tgApiKey string
+	config   map[string]string
 }
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
 	app := &serviceBot{
 		errorLog: errorLog,
 		infoLog:  infoLog,
-		tgApiKey: conf["key"],
+		config:   conf,
 	}
 
 	// Инициализация grcp сервера.

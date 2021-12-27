@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"runtime/debug"
+
+	"portfolio.site/pkg/api"
 )
 
 // Помошник serverError создает сообщение ошибки после вызывает созданый логер и выводит текст ошибки.
@@ -24,6 +26,7 @@ func (app *application) notFound(w http.ResponseWriter) {
 	app.clientError(w, http.StatusNotFound)
 }
 
+//кеширование шаблонов
 func (app application) render(w http.ResponseWriter, r *http.Request, name string, data interface{}) {
 	ts, ok := app.templateCache[name]
 	if !ok {
@@ -33,5 +36,21 @@ func (app application) render(w http.ResponseWriter, r *http.Request, name strin
 	err := ts.Execute(w, data)
 	if err != nil {
 		app.serverError(w, err)
+	}
+}
+
+func (app application) SendSMTP(mess *api.MessReq) {
+	err := app.SendMessegeServiceSMTP(mess)
+	if err != nil {
+		app.errorLog.Println(err.Error())
+		// нужно написать ридерект на страницу ошибка сервиса. Или как то обработать ошибку.
+	}
+}
+
+func (app application) SendTgBot(mess *api.MessReq) {
+	err := app.SendMessegeServiceBot(mess)
+	if err != nil {
+		app.errorLog.Println(err.Error())
+		// нужно написать ридерект на страницу ошибка сервиса. Или как то обработать ошибку.
 	}
 }
