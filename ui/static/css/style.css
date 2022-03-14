@@ -57,6 +57,11 @@ header {
     display: grid;
     grid-template-rows: repeat(10, 12fr);
     grid-template-columns: 100%;
+    transition: 1s;
+}
+
+header:hover {
+    box-shadow: inset 1px 1px 15px rgba(0, 0, 0, 0.5), 1px 1px 15px #000000;
 }
 
 a {
@@ -163,7 +168,7 @@ grean {
     color: #00FFCB !important;
 }
 
-@media (min-width: 421px) and (max-width:800px) {
+@media (min-width: 421px) and (max-width:950px) {
     body {
         grid-template-columns: 100%;
         grid-template-rows: 8vh 92vh;

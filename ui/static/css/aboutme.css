@@ -61,7 +61,7 @@
     color: whitesmoke;
 }
 
-@media (min-width: 421px) and (max-width:800px) {
+@media (min-width: 421px) and (max-width:950px) {
     .aboutme_box {
         grid-column: 1/8;
         grid-row: 1/6;

@@ -45,7 +45,7 @@
     font-size: 16pt;
 }
 
-@media (min-width: 421px) and (max-width:800px) {
+@media (min-width: 421px) and (max-width:950px) {
     .textBox {
         grid-column: 2/7;
         grid-row: 1/3;

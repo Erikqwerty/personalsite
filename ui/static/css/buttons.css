@@ -140,7 +140,7 @@
     box-shadow: inset 3px 3px 15px rgba(0, 0, 0, 0.5), 1px 1px 15px #08fdd8;
 }
 
-@media (min-width: 421px) and (max-width:800px) {
+@media (min-width: 421px) and (max-width:950px) {
     .button-1 {
         min-width: 200px;
         min-height: 10px;

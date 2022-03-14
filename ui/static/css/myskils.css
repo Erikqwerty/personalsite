@@ -57,7 +57,7 @@
     text-decoration: underline;
 }
 
-@media (min-width: 421px) and (max-width:800px) {
+@media (min-width: 421px) and (max-width:950px) {
     .wrapp-skils {
         height: 100vh;
         grid-template-columns: 95vw;
